@@ -1,5 +1,11 @@
+@font-face {
+  font-family: 'MyCustomFont'; /* This is the name you will use in CSS */
+  src: url('./assets/fonts/imagine_font/Imagine_Font.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .App{
   font-family: sans-serif;
-  background-color: #f8f8f8;
   color: #333;
 }

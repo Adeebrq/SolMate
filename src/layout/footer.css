@@ -1,0 +1,41 @@
+.footerBody{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px;
+    position: relative; 
+    background: linear-gradient(to bottom, #0A0520 0%, #000000 50%, #000000 100%);
+}
+
+.about{
+    width: 40%;
+}
+
+.description{
+    font-size: 14px;
+    padding-top: 10px;
+}
+
+.logo{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.logo{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.credit{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; 
+    height: 100%; 
+}
+
+.credit p{
+    position: absolute; 
+    bottom: 15px; 
+    right: 15px;
+}

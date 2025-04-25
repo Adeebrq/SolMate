@@ -1,0 +1,35 @@
+.headerBody{
+    background-color: #2B2B2B;
+    color: white;
+    height: 3em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid grey;
+}
+
+.left{
+display: flex;
+flex-direction: row;
+align-items: center;
+gap: 10px;
+}
+
+.right{
+display: flex;
+flex-direction: row;
+align-items: center;
+gap: 10px;
+}
+
+.copyKey{
+    cursor: pointer;
+}
+
+.logoText{
+    font-family: 'MyCustomFont', sans-serif; /* Apply the custom font */
+    font-size: 30px;
+    margin-bottom: 7px;
+    color: #F2F0EF
+}

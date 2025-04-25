@@ -18,18 +18,20 @@ interface WalletContextProps {
     disconnect: ()=> void,
     switchNetwork: (newNetwork: keyof typeof NETWORKS)=> void
     network: string,
-    tokenBalance: TokenInfo[]
-
+    tokenBalance: TokenInfo[],
+    connection: Connection,
+    solPrice: number,
+    usdBalance: number,
 }
 const WalletContext = createContext<WalletContextProps | null>(null);
-
-
 
 export const CustomWalletProvider= ({children}: any)=> {
     const {publicKey, disconnect, select, connected,  connect , wallets: adapterWallets} = useWallet()
     const [balance, setBalance] = useState<number>(0)
     const [network, setNetwork]= useState<keyof typeof NETWORKS>("devnet")
     const [tokenBalance, setTokenBalance] = useState<TokenInfo[]>([])
+    const [solPrice, setSolPrice]= useState<number>(0)
+    const [usdBalance, setUsdBalance] = useState<number>(0)
 
         
     const endpoint= useMemo(()=> NETWORKS[network] || clusterApiUrl(network as Cluster), [network])
@@ -64,7 +66,8 @@ export const CustomWalletProvider= ({children}: any)=> {
 
     }, [adapterWallets, select])
 
-
+    // balance fetching
+    useEffect(()=>{
     const fetchBalance = async(publicKey: PublicKey)=> {
        try {
         const balance = await connection.getBalance(publicKey) / LAMPORTS_PER_SOL
@@ -73,16 +76,32 @@ export const CustomWalletProvider= ({children}: any)=> {
         console.log("An error has occured-", error)
        }
     }
+    if (connected && publicKey){
+        fetchBalance(publicKey)
+    }else{
+        setBalance(0)
+    }
+    },[publicKey, network, connected, solPrice])
 
 
-    useEffect(()=>{
-        if (connected && publicKey ){
-            fetchBalance(publicKey)
-        }else{
-            setBalance(0)
-        }
-    },[publicKey, network, connected])
+    // SOL/USD conversion
+    useEffect(()=> {
+    const solInUSD= async()=>{
+       try {
+         const dataFetch= await fetch("https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd")
+         const data= await dataFetch.json()
+         const price = data.solana.usd
+         setSolPrice(price)
 
+         if(balance > 0 || solPrice> 0){
+            setUsdBalance(balance * solPrice)
+          }
+       } catch (error) {
+        console.log("Usd balance fetching failed")
+       }
+    }
+    solInUSD();
+    }, [balance, connect, solPrice])
 
     const switchNetwork= (newNetwork:  keyof typeof NETWORKS)=> {
         if (NETWORKS[newNetwork]){
@@ -93,35 +112,33 @@ export const CustomWalletProvider= ({children}: any)=> {
     }
 
 
-    useEffect(()=> {
-        const fetchTokens=async()=> {
+    useEffect(()=>  {
         try {
-            if(!publicKey || !wallets) return;
-                const res= await connection.getParsedTokenAccountsByOwner(publicKey, {programId: TOKEN_PROGRAM_ID})
-                const tokens= res.value.map((accountInfo)=>{
-                    const parsed= accountInfo.account.data.parsed.info
-                    console.log(parsed, "parsed")
 
-                    if ( !parsed || !parsed.tokenAmount.uiAmount || !parsed.tokenAccount || !parsed.tokenAccount.decimals === undefined){
-                        return null;
-                    }
-                        
-                    return {
+            const fetchAccounts= async()=> {
+                if (!publicKey || !wallets)return ;
+
+                const tokenFetch= await connection.getParsedTokenAccountsByOwner(publicKey, {programId: TOKEN_PROGRAM_ID})
+                const tokens= tokenFetch.value.map((accountInfo)=> {
+                    const parsed= accountInfo.account.data.parsed.info
+
+                    if (!parsed || !parsed.mint || parsed.tokenAmount.uiAmount === undefined  || parsed.tokenAmount.decimals === undefined) return null;
+                     return {
                         mint: parsed.mint,
                         amount: parsed.tokenAmount.uiAmount,
-                        decimals: parsed.tokenAccount.decimals
-                    }
-                }).filter((t): t is {mint: string; amount: number, decimals: number }=> t !== null)
+                        decimals: parsed.tokenAmount.decimals
+                     }
+
+                }).filter((t): t is {mint: string; amount: number; decimals: number}=> t !== null )
                 setTokenBalance(tokens)
+            }
+            fetchAccounts();
+            
         } catch (error) {
-            console.log("Error-", error)
+            console.log("An error has occured, ", error)
+            
         }
-    }
-    fetchTokens();
     }, [publicKey, connected])
-
-
-
 
     return(
         <AdapterWalletProvider wallets={wallets}>
@@ -134,7 +151,11 @@ export const CustomWalletProvider= ({children}: any)=> {
             disconnect,
             network,
             switchNetwork,
-            tokenBalance
+            tokenBalance,
+            connection,
+            solPrice,
+            usdBalance,
+
         }}
         >
         {children}
