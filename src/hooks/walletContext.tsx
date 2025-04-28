@@ -22,6 +22,7 @@ interface WalletContextProps {
     connection: Connection,
     solPrice: number,
     usdBalance: number,
+    solPriceChange: number | null,
 }
 const WalletContext = createContext<WalletContextProps | null>(null);
 
@@ -32,6 +33,7 @@ export const CustomWalletProvider= ({children}: any)=> {
     const [tokenBalance, setTokenBalance] = useState<TokenInfo[]>([])
     const [solPrice, setSolPrice]= useState<number>(0)
     const [usdBalance, setUsdBalance] = useState<number>(0)
+    const [solPriceChange, setSolPriceChange]= useState<number | null>(null)
 
         
     const endpoint= useMemo(()=> NETWORKS[network] || clusterApiUrl(network as Cluster), [network])
@@ -111,6 +113,23 @@ export const CustomWalletProvider= ({children}: any)=> {
         }
     }
 
+    useEffect(()=> {
+        const fecthsolPriceChange=async()=>{
+          try {
+            const response= await fetch("https://api.coingecko.com/api/v3/coins/solana")
+            const data= await response.json()
+            const percentageChange= data.market_data.price_change_percentage_24h;
+            setSolPriceChange(percentageChange)
+            console.log("solPriceChange", solPriceChange)
+          } catch (error) {
+            console.log("An error has occured")
+            setSolPriceChange(null)
+          }
+    
+        }
+        fecthsolPriceChange()
+      }, [publicKey, connected])
+
 
     useEffect(()=>  {
         try {
@@ -155,6 +174,8 @@ export const CustomWalletProvider= ({children}: any)=> {
             connection,
             solPrice,
             usdBalance,
+            solPriceChange,
+
 
         }}
         >

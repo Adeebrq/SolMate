@@ -6,16 +6,16 @@
       .cls-3 {fill: url(#linear-gradient-3);}
     </style>
     <linearGradient id="linear-gradient" x1="463" y1="205.16" x2="182.39" y2="742.62" gradientTransform="translate(0 -198)" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#800080"/> <!-- Purple -->
+      <stop offset="0" stop-color="#6B77FF"/> <!-- Blue -->
       <stop offset="1" stop-color="#000000"/> <!-- Black -->
     </linearGradient>
     <linearGradient id="linear-gradient-2" x1="340.31" y1="141.1" x2="59.71" y2="678.57" gradientTransform="translate(0 -198)" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#4B0082"/> <!-- Indigo (darker purple) -->
+      <stop offset="0" stop-color="#6B77FF"/> <!-- Blue -->
       <stop offset="1" stop-color="#000000"/> <!-- Black -->
     </linearGradient>
     <linearGradient id="linear-gradient-3" x1="401.26" y1="172.92" x2="120.66" y2="710.39" gradientTransform="translate(0 -198)" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#800080"/> <!-- Purple -->
-      <stop offset="0.5" stop-color="#4B0082"/> <!-- Indigo (midpoint for variety) -->
+      <stop offset="0" stop-color="#6B77FF"/> <!-- Blue -->
+      <stop offset="0.5" stop-color="#3A47D5"/> <!-- Darker blue midpoint -->
       <stop offset="1" stop-color="#000000"/> <!-- Black -->
     </linearGradient>
   </defs>

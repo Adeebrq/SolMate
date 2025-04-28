@@ -1,0 +1,66 @@
+
+.containerBody{
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 15px;
+}
+
+.subContainerBody{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 15px;
+}
+
+.tokenCard {
+    background-color: #1a1a3d; 
+    border-radius: 8px;
+    padding: 8px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .tokenCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .tokenLogo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .tokenInfo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .tokenInfo p {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  .tokenName {
+    font-weight: 600;
+  }
+  
+  .tokenSymbol {
+    color: #9c9c9c; 
+  }
+  .tokenHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+  .tokenHeader p {
+    margin: 0;
+  }
+  

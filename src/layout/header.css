@@ -1,12 +1,12 @@
 .headerBody{
-    background-color: #2B2B2B;
+    background-color: #1A1040;
     color: white;
     height: 3em;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 15px;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid #6B77FF;
 }
 
 .left{
