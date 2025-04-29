@@ -1,0 +1,301 @@
+:root {
+  --primary-color: #4776e6;
+  --primary-gradient: linear-gradient(90deg, #4776e6 0%, #8e54e9 100%);
+  --secondary-gradient: linear-gradient(90deg, #1cb5e0 0%, #000851 100%);
+  --card-bg: rgba(13, 16, 45, 0.85);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --success-color: #00f5a0;
+  --error-color: #ff5e5b;
+  --warning-color: #ffb400;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-tertiary: rgba(255, 255, 255, 0.5);
+  --glow-effect: 0 0 10px rgba(71, 118, 230, 0.5);
+}
+
+.txnHistoryContainer {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.txnHistoryList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--text-primary);
+}
+
+.txnHistoryItem {
+  background: var(--card-bg);
+  padding: 10px;
+  border-radius: 16px;
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.txnHistoryItem:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--glow-effect), var(--card-shadow);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.txnHistoryItem:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--primary-gradient);
+}
+
+.txnHistoryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.txnHistorySignatureContainer {
+  display: flex;
+  align-items: center;
+}
+
+.txnHistorySignatureIcon {
+  width: 26px;
+  height: 26px;
+  background: var(--secondary-gradient);
+  border-radius: 10px;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.txnHistorySignatureLink {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.txnHistorySignatureLink:hover {
+  color: #8e54e9;
+  text-shadow: var(--glow-effect);
+}
+
+.txnHistorySignatureLink:after {
+  content: "→";
+  margin-left: 4px;
+  font-size: 18px;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 0.2s ease;
+}
+
+.txnHistorySignatureLink:hover:after {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+.txnHistoryStatusContainer {
+  display: flex;
+  gap: 8px;
+}
+
+.txnHistoryStatusBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 24px;
+  font-size: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.txnHistoryStatusBadge:before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+/* Status Colors */
+.txnHistoryStatusSuccess {
+  background: rgba(0, 245, 160, 0.15);
+  color: var(--success-color);
+}
+
+.txnHistoryStatusSuccess:before {
+  background: var(--success-color);
+  box-shadow: 0 0 8px var(--success-color);
+}
+
+.txnHistoryStatusFailed {
+  background: rgba(255, 94, 91, 0.15);
+  color: var(--error-color);
+}
+
+.txnHistoryStatusFailed:before {
+  background: var(--error-color);
+  box-shadow: 0 0 8px var(--error-color);
+}
+
+.txnHistoryStatusUnknown {
+  background: rgba(255, 180, 0, 0.15);
+  color: var(--warning-color);
+}
+
+.txnHistoryStatusUnknown:before {
+  background: var(--warning-color);
+  box-shadow: 0 0 8px var(--warning-color);
+}
+
+/* Confirmation Status Colors */
+.txnHistoryConfirmationConfirmed {
+  background: rgba(71, 118, 230, 0.15);
+  color: var(--primary-color);
+}
+
+.txnHistoryConfirmationConfirmed:before {
+  background: var(--primary-color);
+  box-shadow: 0 0 8px var(--primary-color);
+}
+
+.txnHistoryConfirmationFinalized {
+  background: rgba(142, 84, 233, 0.15);
+  color: #8e54e9;
+}
+
+.txnHistoryConfirmationFinalized:before {
+  background: #8e54e9;
+  box-shadow: 0 0 8px #8e54e9;
+}
+
+/* Transaction Details */
+.txnHistoryDetails {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.txnHistoryField {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.txnHistoryFieldBottom {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.txnHistoryDetails .txnHistoryFieldTop {
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+.txnHistoryLabel {
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  width: auto;
+}
+
+.txnHistoryValue {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.txnHistoryValue.positive {
+  color: var(--success-color);
+}
+
+.txnHistoryValue.negative {
+  color: var(--error-color);
+}
+
+.txnHistoryTokenList {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.txnHistoryTokenList li {
+  margin-bottom: 10px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.txnHistoryTokenAmount {
+  font-weight: 600;
+}
+
+.txnHistoryTokenAmount.positive {
+  color: var(--success-color);
+}
+
+.txnHistoryTokenAmount.negative {
+  color: var(--error-color);
+}
+
+.txnHistoryTokenMint {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .txnHistoryHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .txnHistoryStatusContainer {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .txnHistoryDetails {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .txnHistoryItem {
+    padding: 15px;
+  }
+
+  .txnHistoryStatusContainer {
+    flex-wrap: wrap;
+  }
+
+  .txnHistoryStatusBadge {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+}

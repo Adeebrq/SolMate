@@ -128,7 +128,14 @@ export const CustomWalletProvider= ({children}: any)=> {
     
         }
         fecthsolPriceChange()
-      }, [publicKey, connected])
+    }, [publicKey, connected])
+
+    useEffect(()=>{
+        
+    }, [])
+
+    
+
 
 
     useEffect(()=>  {

@@ -2,7 +2,7 @@ import React from 'react'
 import "./header.css"
 import logo from "../assets/solana-icon.svg"
 import { CustomButton } from '../components/customButton'
-import { useWalletContext } from '../hooks/walletContext'
+import { useWalletContext } from '../hooks/useWalletContext'
 
 
 const copyText= (text: string)=>{

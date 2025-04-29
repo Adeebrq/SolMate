@@ -1,8 +1,11 @@
-
 .containerBody{
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr;
     gap: 15px;
+    height: auto;
+}
+.dashboardBody{
+  margin-top: 15px;
 }
 
 .subContainerBody{
@@ -12,55 +15,121 @@
 }
 
 .tokenCard {
-    background-color: #1a1a3d; 
-    border-radius: 8px;
-    padding: 8px;
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: #1a1a3d; 
+  border-radius: 8px;
+  padding: 8px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.tokenCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.tokenLogo {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.tokenInfo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.tokenInfo p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.tokenName {
+  font-weight: 600;
+}
+
+.tokenSymbol {
+  color: #9c9c9c; 
+}
+
+.tokenHeader{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.tokenHeader p {
+  margin: 0;
+}
+
+.solPriceHeader{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rightInfoTop{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+
+.animated-value {
+  font-weight: bold;
+  display: inline-block;
+  font-size: 20px;
+  color: #3b50ff;
+  transition: color 0.3s ease;
+}
+
+.animated-value:hover {
+  color: #228be6;
+}
+
+.connection-indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #51cf66;
+  margin-left: 8px;
+  position: relative;
+}
+
+.connection-indicator::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #51cf66;
+  animation: pulse 1.5s infinite;
+}
+
+#connectionStatus{
+  font-size: 12px;
+  color: #9c9c9c;
+}
+
+@keyframes pulse {
+  0% {
+      transform: scale(1);
+      opacity: 1;
   }
-  
-  .tokenCard:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  50% {
+      transform: scale(1.5);
+      opacity: 0.3;
   }
-  
-  .tokenLogo {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
+  100% {
+      transform: scale(1);
+      opacity: 1;
   }
-  
-  .tokenInfo {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-  
-  .tokenInfo p {
-    margin: 0;
-    font-size: 14px;
-  }
-  
-  .tokenName {
-    font-weight: 600;
-  }
-  
-  .tokenSymbol {
-    color: #9c9c9c; 
-  }
-  .tokenHeader{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    align-items: center;
-  }
-  .tokenHeader p {
-    margin: 0;
-  }
-  
+}

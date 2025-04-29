@@ -2,15 +2,9 @@
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 10px;
-    overflow: hidden;
     border: 2px solid #6B77FF;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 1);
-    height: 100%
   }
   
-  .container-header {
-    margin-bottom: 16px;
-  }
   
   .container-title {
     font-size: 16px;
@@ -44,6 +38,7 @@
   
   .container-content.v-scroll {
     overflow-y: auto; 
+    max-height: 300px; 
   }
   
 
@@ -57,24 +52,17 @@
   }
   
   .container-content.v-scroll::-webkit-scrollbar-thumb {
-    background: #a100a1; 
+    background: #6B77FF; 
     border-radius: 4px;
   }
   
   .container-content.v-scroll::-webkit-scrollbar-thumb:hover {
-    background: #c100c1; 
+    background: #6B77FF; 
   }
   
-  /* Firefox scrollbar support */
   .container-content.v-scroll {
     scrollbar-width: thin;
-    scrollbar-color: #a100a1 #2a1a3d; 
-  }
-  
-  .metric-value {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
+    scrollbar-color: #6B77FF #2a1a3d; 
   }
   
   .metric-change {
@@ -87,8 +75,11 @@
   }
 
   .solPriceChangePlus{
-    background: linear-gradient(to top right, #006403, #2F2E41); 
+    background: linear-gradient(to top right, #006403 0%, #0A0520 70%, #0A0520 100%);
   }
   .solPriceChangeMinus{
-    background: linear-gradient(to top right, #6b0000, #2F2E41);
+    background: linear-gradient(to top right, #6b0000 0%, #0A0520 70%, #0A0520 100%);
+  }
+  .gapTop{
+    margin-top: 15px;
   }

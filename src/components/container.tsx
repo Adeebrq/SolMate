@@ -7,6 +7,7 @@ interface ContainerProps {
   children: ReactNode;
   className?: string;
   vscroll?: boolean;
+  maxHeight?: number;
 }
 
 const Container: React.FC<ContainerProps> = ({
@@ -15,17 +16,19 @@ const Container: React.FC<ContainerProps> = ({
   children,
   className,
   vscroll = false, 
+  maxHeight,
 }) => {
   return (
     <div className={`data-container ${className || ''}`}>
-      <div className="container-header">
+      <div>
         {title && <p className="container-title">{title}</p>}
-        {subtitle && <p className="container-subtitle">{subtitle}</p>}
-        <div className={`container-content ${vscroll ? 'v-scroll' : ''}`}>
+        {subtitle && <p className="container-subtitle">{subtitle}</p>}</div>
+
+        <div className={`container-content ${vscroll ? 'v-scroll' : ''}`}
+        style={vscroll && maxHeight ? {maxHeight}: undefined}>
           {children}
         </div>
       </div>
-    </div>
   );
 };
 

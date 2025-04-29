@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { LineData, createChart, IChartApi, Time, AreaSeries, CrosshairMode} from "lightweight-charts";
-import { HELIUS_API_KEY } from "../solana/constants";
+import './customLineChart.css'
 
 interface WalletLineChartProps {
   publicKey: string;
@@ -212,9 +212,9 @@ const WalletLineChart: React.FC<WalletLineChartProps> = ({ publicKey, apiKey, so
       });
 
       const lineSeries = chartRef.current.addSeries(AreaSeries, {
-        topColor: "rgba(128, 0, 128, 0.5)",
-        bottomColor: "rgba(128, 0, 128, 0.0)",
-        lineColor:  "#800080",
+        topColor: "rgba(107, 119, 255, 0.5)",
+        bottomColor: "rgba(107, 119, 255, 0.0)",
+        lineColor:  "#6B77FF",
         lineWidth: 2,
       });
       lineSeries.setData(data);
@@ -253,24 +253,23 @@ const WalletLineChart: React.FC<WalletLineChartProps> = ({ publicKey, apiKey, so
 
   return (
     <div>
-      {error && <p style={{ color: "#FF4040", marginBottom: "10px" }}>{error}</p>}
       <div ref={chartContainerRef}/>
       <div style={{marginTop: "20px"}}>
         <button
           onClick={() => setTimeRange("1W")}
-          style={{ marginRight: "5px", background: timeRange === "1W" ? "#6B77FF" : "#2E2E2E", color: "#FFFFFF", border: "none", padding: "5px 10px", borderRadius: "5px" }}
+          style={{background: timeRange === "1W" ? "#6B77FF" : "#2E2E2E" }}
         >
           1 Week
         </button>
         <button
           onClick={() => setTimeRange("1M")}
-          style={{ marginRight: "5px", background: timeRange === "1M" ? "#6B77FF" : "#2E2E2E", color: "#FFFFFF", border: "none", padding: "5px 10px", borderRadius: "5px" }}
+          style={{background: timeRange === "1M" ? "#6B77FF" : "#2E2E2E" }}
         >
           1 Month
         </button>
         <button
           onClick={() => setTimeRange("3M")}
-          style={{ background: timeRange === "3M" ? "#6B77FF" : "#2E2E2E", color: "#FFFFFF", border: "none", padding: "5px 10px", borderRadius: "5px" }}
+          style={{background: timeRange === "3M" ? "#6B77FF" : "#2E2E2E"}}
         >
           3 Months
         </button>
